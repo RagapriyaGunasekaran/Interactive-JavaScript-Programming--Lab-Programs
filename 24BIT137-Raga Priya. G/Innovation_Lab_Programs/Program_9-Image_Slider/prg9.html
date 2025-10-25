@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .slider { 
+            text-align: center; 
+            position: relative; 
+            width: 60%; 
+            margin: auto; 
+        } 
+        .slider img { 
+            width: 100%; 
+            height: auto; 
+        } 
+        .slider button { 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            padding: 10px; 
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        } 
+        #prevBtn { 
+            left: 10px; 
+        } 
+        #nextBtn { 
+            right: 10px; 
+        } 
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <img src="https://cdn.pixabay.com/photo/2025/10/09/14/14/muztagh-9883659_1280.jpg" class="slider-img" alt="image1">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
+    <script>
+        let images=["https://cdn.pixabay.com/photo/2025/10/14/18/45/tree-9894964_1280.jpg","https://cdn.pixabay.com/photo/2025/08/07/13/59/sea-9761017_1280.jpg","https://cdn.pixabay.com/photo/2025/10/09/08/14/mushroom-9883036_1280.jpg"];
+        let currentIndex=0;
+        const imgElement=document.querySelector(".slider-img");
+        const prevBtn=document.getElementById("prevBtn");
+        const nextBtn=document.getElementById("nextBtn");
+        nextBtn.addEventListener("click",()=>{
+            currentIndex=(currentIndex+1)%images.length;
+            imgElement.src=images[currentIndex];
+        });
+        prevBtn.addEventListener("click",()=>{
+            currentIndex=(currentIndex-1+images.length)%images.length;
+            imgElement.src=images[currentIndex];
+        });
+        setInterval(()=>{
+            currentIndex=(currentIndex+1)%images.length;
+            imgElement.src=images[currentIndex];
+        },3000);
+    </script>
+</body>
+</html>
